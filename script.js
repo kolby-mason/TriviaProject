@@ -20,11 +20,14 @@ let totalScore = 0;
 
 const questionText = document.getElementById("question-text");
 const optionsDiv = document.querySelector(".options");
+const answerForm = document.getElementById("answer-form");
+const quizContainer = document.getElementById("quiz-container");
+const resultContainer = document.getElementById("result-container");
+const scoreSpan = document.getElementById("score");
+const restartBtn = document.getElementById("restart-btn");
 
-// very ugly looking right now, but it works
 function renderQuestion() {
 
-  console.log("Rendering Question:", questionText)
   const q = questions[currentIndex];
   questionText.textContent = q.question;
   optionsDiv.innerHTML = "";
@@ -50,9 +53,8 @@ function renderQuestion() {
   });
 }
 
-
 //Results
-document.getElementById("answer-form").addEventListener("submit", e => {
+answerForm.addEventListener("submit", e => {
   e.preventDefault();
   let selected = document.querySelector("input[name='answer']:checked");
   if (!selected) return;
@@ -63,12 +65,17 @@ document.getElementById("answer-form").addEventListener("submit", e => {
 
   currentIndex++;
   if (currentIndex >= questions.length) {
-    //gotta make a result screen later
-    alert("Final score: " + totalScore);
+    renderResult();
   }
   else {
     renderQuestion();
   }
 });
+
+function renderResult() {
+  quizContainer.classList.add("hidden");
+  resultContainer.classList.remove("hidden");
+  scoreSpan.textContent = totalScore;
+}
 
 renderQuestion();

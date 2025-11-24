@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Windows 98 Trivia</title>
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -14,6 +15,11 @@
       <div class="options"></div>
       <button class="button" type="submit">Submit</button>
     </form>
+  </div>
+
+  <div id="result-container" class="hidden">
+    <h2>Your Score: <span id="score"></span></h2>
+    <button class="button" id="restart-btn">Restart</button>
   </div>
 
   <script src="script.js"></script>
