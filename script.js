@@ -11,10 +11,22 @@ let questions = [
   { question: "Which year came after 2005?", options: ["2006","2004","2007","2003"], answer: "2006" },
   { question: "Which year came after 2006?", options: ["2007","2005","2008","2004"], answer: "2007" },
   { question: "Which year came after 2007?", options: ["2008","2006","2009","2005"], answer: "2008" },
-  { question: "Which year came after 2008?", options: ["2009","2007","2010","2006"], answer: "2009" }
+  { question: "Which year came after 2008?", options: ["2009","2007","2010","2006"], answer: "2009" },
+  { question: "Which year came after 2009?", options: ["2010","2008","2011","2007"], answer: "2010" },
+  { question: "Which year came after 2010?", options: ["2011","2009","2012","2008"], answer: "2011" },
+  { question: "Which year came after 2011?", options: ["2012","2010","2013","2009"], answer: "2012" },
+  { question: "Which year came after 2012?", options: ["2013","2011","2014","2010"], answer: "2013" }
 ];
 
+// Shuffle
+function shuffle(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
 // Quiz
+let shuffledIndex = [];
 let currentIndex = 0;
 let totalScore = 0;
 
@@ -27,9 +39,16 @@ const resultContainer = document.getElementById("result-container");
 const scoreSpan = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
 
+function startQuiz(){
+  shuffledIndex = [...questions]
+  shuffle(shuffledIndex)
+  shuffledIndex = shuffledIndex.splice(0, 10);
+  renderQuestion();
+}
+
 function renderQuestion() {
 
-  const q = questions[currentIndex];
+  const q = shuffledIndex[currentIndex];
   questionText.textContent = q.question;
   optionsDiv.innerHTML = "";
 
@@ -102,4 +121,4 @@ restartBtn.addEventListener("click", () => {
   renderQuestion();
 });
 
-renderQuestion();
+startQuiz();
