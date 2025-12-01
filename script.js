@@ -21,6 +21,7 @@ let totalScore = 0;
 const questionText = document.getElementById("question-text");
 const optionsDiv = document.querySelector(".options");
 const answerForm = document.getElementById("answer-form");
+const addQuestionForm = document.getElementById("add-question-form");
 const quizContainer = document.getElementById("quiz-container");
 const resultContainer = document.getElementById("result-container");
 const scoreSpan = document.getElementById("score");
@@ -53,9 +54,24 @@ function renderQuestion() {
   });
 }
 
+//Add Question
+//might work? need to add shuffle in to see
+addQuestionForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const newQ = document.getElementById("new-question").value;
+  const options = Array.from(document.querySelectorAll(".option-inpu")).map(i => i.value);
+  const newA = document.getElementById("new-answer").value;
+
+  questions.push({ question: newQ, options: options, answer: newA });
+
+  addQuestionForm.reset();
+})
+
 //Results
 answerForm.addEventListener("submit", e => {
   e.preventDefault();
+
   let selected = document.querySelector("input[name='answer']:checked");
   if (!selected) return;
 
@@ -77,5 +93,13 @@ function renderResult() {
   resultContainer.classList.remove("hidden");
   scoreSpan.textContent = totalScore;
 }
+
+restartBtn.addEventListener("click", () => {
+  currentIndex = 0;
+  totalScore = 0;
+  quizContainer.classList.remove("hidden");
+  resultContainer.classList.add("hidden");
+  renderQuestion();
+});
 
 renderQuestion();
