@@ -213,6 +213,7 @@ restartBtn.addEventListener("click", () => {
 });
 
 //Just for added Flair
+//PLEASE DO NOT GRADE
 //Draggable Windows
 function makeDraggable(windowEl, titleBarEl) {
   let isDragging = false, offsetX = 0, offsetY = 0;
@@ -251,9 +252,6 @@ function updateClock() {
 }
 
 //Titlebar Buttons
-// ==========================
-// WINDOW CONTROL HANDLING
-// ==========================
 
 const taskbarIcons = document.getElementById("taskbar-icons");
 
