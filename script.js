@@ -91,15 +91,19 @@ let currentIndex = 0;
 let totalScore = 0;
 
 // DOM elements
+const systemClock = document.getElementById('system-clock'); 
+
+const quizContainer = document.getElementById("quiz-container");
 const questionText = document.getElementById("question-text");
 const optionsDiv = document.querySelector(".options");
 const answerForm = document.getElementById("answer-form");
-const addQuestionForm = document.getElementById("add-question-form");
-const errorDiv = document.getElementById("add-question-error");
-const quizContainer = document.getElementById("quiz-container");
 const resultContainer = document.getElementById("result-container");
 const scoreSpan = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
+
+const addQuestionForm = document.getElementById("add-question-form");
+const errorDiv = document.getElementById("add-question-error");
+
 
 // Start quiz
 function startQuiz(){
@@ -140,9 +144,17 @@ function renderQuestion() {
   questionText.textContent = q.question;
   optionsDiv.innerHTML = "";
 
-  q.options.forEach((opt, index) => {
-    optionsDiv.appendChild(createOptionElement(opt, index));
+  const fieldset = document.createElement('fieldset');
+  const legend = document.createElement('legend');
+  legend.textContent = 'Choose an Answer';
+  fieldset.appendChild(legend);
+
+  q.options.forEach((option, index) => {
+      const optionElement = createOptionElement(option, index);
+      fieldset.appendChild(optionElement);
   });
+
+  optionsDiv.appendChild(fieldset);
 }
 
 //Add Question
@@ -155,13 +167,19 @@ addQuestionForm.addEventListener("submit", e => {
 
   errorDiv.textContent = "";
 
-  if (options.includes(newA)) {
-    questions.push({ question: newQ, options: options, answer: newA });
-    addQuestionForm.reset();
-  } else {
+   if (!newQ || options.some(opt => !opt) || !newA) {
+    errorDiv.textContent = "You have to have all fields filled!";
+    return;
+  }
+
+  if (!options.includes(newA)) {
     errorDiv.textContent = "Your Answer must match one of the Options!";
     return;
   }
+
+  questions.push({ question: newQ, options: options, answer: newA });
+  addQuestionForm.reset();
+  
 })
 
 //Results
@@ -194,4 +212,105 @@ restartBtn.addEventListener("click", () => {
   startQuiz();
 });
 
-startQuiz();
+//Just for added Flair
+//Draggable Windows
+function makeDraggable(windowEl, titleBarEl) {
+  let isDragging = false, offsetX = 0, offsetY = 0;
+
+  titleBarEl.addEventListener('mousedown', e => {
+    isDragging = true;
+    offsetX = e.clientX - windowEl.offsetLeft;
+    offsetY = e.clientY - windowEl.offsetTop;
+    titleBarEl.style.cursor = 'grabbing';
+    windowEl.style.zIndex = 1000;
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (isDragging) {
+      windowEl.style.left = `${e.clientX - offsetX}px`;
+      windowEl.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    titleBarEl.style.cursor = 'move';
+  });
+
+  windowEl.addEventListener('mousedown', () => { windowEl.style.zIndex = 1000; });
+}
+
+makeDraggable(document.getElementById('quiz-window'), document.getElementById('quiz-title-bar'));
+makeDraggable(document.getElementById('add-window'), document.getElementById('add-title-bar'));
+
+//Clock
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+  systemClock.textContent = timeString;
+}
+
+//Titlebar Buttons
+// ==========================
+// WINDOW CONTROL HANDLING
+// ==========================
+
+const taskbarIcons = document.getElementById("taskbar-icons");
+
+function setupWindowControls(windowEl) {
+    const minimizeBtn = windowEl.querySelector(".min-btn");
+    const closeBtn = windowEl.querySelector(".close-btn");
+    const title = windowEl.querySelector(".title-bar-text").textContent;
+
+    let taskbarButton = null;
+
+    minimizeBtn.addEventListener("click", () => {
+        windowEl.style.display = "none";
+
+        if (!taskbarButton) {
+            taskbarButton = document.createElement("button");
+            taskbarButton.className = "taskbar-button";
+            taskbarButton.textContent = title;
+            taskbarIcons.appendChild(taskbarButton);
+
+            taskbarButton.addEventListener("click", () => {
+                if (windowEl.style.display === "none") {
+                    windowEl.style.display = "block";
+                } else {
+                    windowEl.style.display = "none";
+                }
+            });
+        }
+    });
+
+    closeBtn.addEventListener("click", () => {
+
+        if (windowEl.id === "quiz-window") {
+            startQuiz();
+            quizContainer.classList.remove("hidden");
+            resultContainer.classList.add("hidden");
+        }
+
+        if (windowEl.id === "add-window") {
+            addQuestionForm.reset();
+            errorDiv.textContent = "";
+        }
+
+        if (taskbarButton) {
+            taskbarButton.remove();
+            taskbarButton = null;
+        }
+    });
+}
+
+setupWindowControls(document.getElementById("quiz-window"));
+setupWindowControls(document.getElementById("add-window"));
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  startQuiz();
+    
+  updateClock();
+  setInterval(updateClock, 1000);
+});
