@@ -1,21 +1,80 @@
 // Questions
-// just more of the same question really need to find actual trivia to put in
 let questions = [
-  { question: "Which year came after 1998?", options: ["1999","1997","2000","1995"], answer: "1999" },
-  { question: "Which year came after 1999?", options: ["2000","1998","2001","1997"], answer: "2000" },
-  { question: "Which year came after 2000?", options: ["2001","1999","2002","1998"], answer: "2001" },
-  { question: "Which year came after 2001?", options: ["2002","2000","2003","1999"], answer: "2002" },
-  { question: "Which year came after 2002?", options: ["2003","2001","2004","2000"], answer: "2003" },
-  { question: "Which year came after 2003?", options: ["2004","2002","2005","2001"], answer: "2004" },
-  { question: "Which year came after 2004?", options: ["2005","2003","2006","2002"], answer: "2005" },
-  { question: "Which year came after 2005?", options: ["2006","2004","2007","2003"], answer: "2006" },
-  { question: "Which year came after 2006?", options: ["2007","2005","2008","2004"], answer: "2007" },
-  { question: "Which year came after 2007?", options: ["2008","2006","2009","2005"], answer: "2008" },
-  { question: "Which year came after 2008?", options: ["2009","2007","2010","2006"], answer: "2009" },
-  { question: "Which year came after 2009?", options: ["2010","2008","2011","2007"], answer: "2010" },
-  { question: "Which year came after 2010?", options: ["2011","2009","2012","2008"], answer: "2011" },
-  { question: "Which year came after 2011?", options: ["2012","2010","2013","2009"], answer: "2012" },
-  { question: "Which year came after 2012?", options: ["2013","2011","2014","2010"], answer: "2013" }
+    {
+        question: "A major cinematic sci-fi trilogy is set to begin in 1999. What will the name of the first film be?",
+        options: ["The Force Awakens", "Revenge of the Sith", "The Return of the Jedi", "The Phantom Menace"],
+        answer: "The Phantom Menace"
+    },
+    {
+        question: "What major event is feared to potentially cause global computer system failures when the calendar rolls over to 2000?",
+        options: ["The Millennium Bug", "The Internet Collapse", "The Great Firewall", "The Digital Divide"],
+        answer: "The Millennium Bug"
+    },
+    {
+        question: "In 1999, the Harry Potter book series, currently three books long, will release its fourth installment. What will the title of that book be?",
+        options: ["The Chamber of Secrets", "The Goblet of Fire", "The Prisoner of Azkaban", "The Order of the Phoenix"],
+        answer: "The Goblet of Fire"
+    },
+    {
+        question: "Microsoft's next major consumer operating system, set for release in 2001, is rumored to combine the NT kernel with the Windows 9x line. What is its common internal name?",
+        options: ["Windows Vista", "Windows 2000", "Windows Neptune", "Windows Whistler"],
+        answer: "Windows Whistler"
+    },
+    {
+        question: "The first module of the International Space Station (ISS) was recently launched. When is the first resident crew expected to arrive and take up permanent residence?",
+        options: ["2001", "2005", "2000", "1999"],
+        answer: "2000"
+    },
+    {
+        question: "What revolutionary digital music format, currently gaining popularity, is predicted to become the standard for portable audio by the early 2000s?",
+        options: ["WAV", "CD-R", "MP3", "MiniDisc"],
+        answer: "MP3"
+    },
+    {
+        question: "A new Olympic sport will be added for the 2000 Sydney Summer Games which involves jumping off a springboard or platform. What is this sport?",
+        options: ["Synchronized Swimming", "Trampoline", "Taekwondo", "Synchronized Diving"],
+        answer: "Synchronized Diving"
+    },
+    {
+        question: "Which iconic Finnish company, known for its durable phones, is expected to maintain its dominance in the burgeoning mobile phone market into the 2000s?",
+        options: ["Motorola", "Ericsson", "Nokia", "BlackBerry"],
+        answer: "Nokia"
+    },
+    {
+        question: "By the early 2000s, what highly anticipated new video game console from Sony is expected to compete with the Nintendo 64 and Sega Dreamcast?",
+        options: ["PlayStation 2", "PlayStation 3", "Xbox", "GameCube"],
+        answer: "PlayStation 2"
+    },
+    {
+        question: "The first truly massive online retailer, which started by selling books, is predicted to expand into nearly all retail categories. What is its name?",
+        options: ["eBay", "Amazon.com", "Buy.com", "AOL Shopping"],
+        answer: "Amazon.com"
+    },
+    {
+        question: "The final mission of the Space Shuttle Program is tentatively scheduled for what year?",
+        options: ["2005", "2011", "2008", "2002"],
+        answer: "2011"
+    },
+    {
+        question: "What famous movie studio is set to release a groundbreaking animated film called 'Toy Story 2' in 1999?",
+        options: ["DreamWorks", "Pixar", "Warner Bros.", "Blue Sky Studios"],
+        answer: "Pixar"
+    },
+    {
+        question: "Which internet stock, known for its animated running dog logo, is expected to remain a top search engine into the next decade?",
+        options: ["Ask Jeeves", "Lycos", "Excite", "Yahoo!"],
+        answer: "Yahoo!"
+    },
+    {
+        question: "A European consortium is planning to introduce a single currency to replace several national currencies in the next few years. What is the name of this new currency?",
+        options: ["The Euro", "The Mark", "The Franc", "The Unit"],
+        answer: "The Euro"
+    },
+    {
+        question: "What major telecommunication technology is expected to replace dial-up modems for home internet connections by the mid-2000s?",
+        options: ["ISDN", "Satellite Internet", "Broadband (DSL/Cable)", "Fiber Optic"],
+        answer: "Broadband (DSL/Cable)"
+    }
 ];
 
 // Shuffle

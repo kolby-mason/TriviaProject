@@ -6,36 +6,82 @@
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="quiz-container">
-    <h2 id="question-text"></h2>
 
-    <form id="answer-form">
-      <div class="options"></div>
-      <button class="button" type="submit">Submit</button>
-    </form>
+  <a href="#" class="desktop-icon" id="explorer-shortcut">
+      <img src="./icons/explorer98.png" alt="My Computer">
+      <span>My Computer</span>
+  </a>
+  <a href="#" class="desktop-icon" id="recycle-shortcut">
+      <img src="./icons/recycle98.png" alt="Recycle Bin">
+      <span>Recycle Bin</span>
+  </a>
+  <a href="#" class="desktop-icon" id="file-shortcut">
+      <img src="./icons/folder98.png" alt="File">
+      <span>My File</span>
+  </a>
+
+  <div class="window" id="quiz-window">
+    <div class="title-bar" id="quiz-title-bar">
+      <div class="title-bar-text">Windows 98 Trivia</div>
+      <div class="title-bar-controls">
+        <button class="min-btn" aria-label="Minimize"></button>
+        <button class="max-btn" aria-label="Maximize"></button>
+        <button class="close-btn" aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div id="quiz-container">
+        <h2 id="question-text"></h2>
+        <form id="answer-form">
+          <div class="options"></div>
+          <button class="button" type="submit">Submit Answer</button>
+        </form>
+      </div>
+      <div id="result-container" class="hidden">
+        <h2>Your Score: <span id="score"></span></h2>
+        <button class="button" id="restart-btn">Play Again</button>
+      </div>
+    </div>
   </div>
 
-  <div id="result-container" class="hidden">
-    <h2>Your Score: <span id="score"></span></h2>
-    <button class="button" id="restart-btn">Restart</button>
+  <div class="window" id="add-window" style="top:100px; left:500px;">
+    <div class="title-bar" id="add-title-bar">
+      <div class="title-bar-text">Add New Question</div>
+      <div class="title-bar-controls">
+        <button class="min-btn" aria-label="Minimize"></button>
+        <button class="max-btn" aria-label="Maximize"></button>
+        <button class="close-btn" aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <form id="add-question-form">
+        <input type="text" id="new-question" placeholder="Enter question" required>
+        <input type="text" class="option-input" placeholder="Option 1" required>
+        <input type="text" class="option-input" placeholder="Option 2" required>
+        <input type="text" class="option-input" placeholder="Option 3" required>
+        <input type="text" class="option-input" placeholder="Option 4" required>
+        <input type="text" id="new-answer" placeholder="Correct Answer" required>
+        <button class="button" type="submit">Add Question</button>
+      </form>
+      <div id="add-question-error"></div>
+    </div>
   </div>
 
-  <div id="add-question-container">
-    <h3>Add New Question</h3>
-    <form id="add-question-form">
-      <input id="new-question" placeholder="Enter question" required>
-      <input class="option-input" placeholder="Option 1" required>
-      <input class="option-input" placeholder="Option 2" required>
-      <input class="option-input" placeholder="Option 3" required>
-      <input class="option-input" placeholder="Option 4" required>
-      <input id="new-answer" placeholder="Correct Answer" required>
-      <button type="submit">Add</button>
-    </form>
-    <div id="add-question-error"></div>
+  <div class="window-taskbar" id="taskbar">
+          <button id="start-button">Start</button>
+          <div id="taskbar-icons">
+              </div>
+          <div class="taskbar-tray">
+              <div class="sunken-panel">
+                  <span id="system-clock"></span>
+              </div>
+          </div>
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
